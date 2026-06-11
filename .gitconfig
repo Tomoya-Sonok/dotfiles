@@ -1,0 +1,24 @@
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+[user]
+	name = Tomoya-Sonok
+	email = 50537591+Tomoya-Sonok@users.noreply.github.com
+[rebase]
+	updateRefs = true
+[push]
+	default = current
+[init]
+	defaultBranch = main
+[fetch]
+	prune = true
+[status]
+	showUntrackedFiles = all
+[core]
+	autocrlf = false
+	filemode = false
+	ignorecase = false
+	quotepath = false
+[merge]
+	conflictStyle = zdiff3
+[pull]
+	rebase = false

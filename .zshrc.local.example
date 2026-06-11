@@ -1,0 +1,6 @@
+# ~/.zshrc.local — machine-local secrets & overrides. NEVER commit this file.
+# Sourced at the very end of ~/.zshrc if it exists.
+#
+# Examples:
+# export OPENAI_API_KEY="..."
+# export WORK_SPECIFIC_VAR="..."
