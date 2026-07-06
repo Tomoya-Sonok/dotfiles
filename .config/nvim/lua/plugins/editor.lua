@@ -6,7 +6,7 @@ return {
     opts = {},
   },
   {
-    "telescope.nvim",
+    "nvim-telescope/telescope.nvim",
     priority = 1000,
     dependencies = {
       {

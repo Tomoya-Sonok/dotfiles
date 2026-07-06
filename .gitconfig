@@ -1,5 +1,5 @@
 [url "ssh://git@github.com/"]
-    insteadOf = https://github.com/
+    pushInsteadOf = https://github.com/
 [user]
 	name = Tomoya-Sonok
 	email = 50537591+Tomoya-Sonok@users.noreply.github.com

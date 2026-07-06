@@ -15,7 +15,6 @@
     ],
     "defaultMode": "plan"
   },
-  "model": "claude-fable-5[1m]",
   "hooks": {
     "Stop": [
       {
@@ -46,8 +45,10 @@
   },
   "language": "Japanese",
   "effortLevel": "xhigh",
+  "tui": "fullscreen",
   "editorMode": "vim",
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "model": "claude-fable-5[1m]"
 }

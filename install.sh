@@ -158,7 +158,19 @@ if [ -x "$HOME/.local/bin/mise" ]; then
   run "$HOME/.local/bin/mise" install --yes
 fi
 
-# --- 9. Machine-local secrets file -----------------------------------------------
+# --- 9. Neovim plugins (pinned by lazy-lock.json) --------------------------------
+# Headless install so the first interactive `nvim` just works.
+# - `Lazy! restore` checks out lock-file commits; missing plugins are installed
+#   at lock commits by lazy.nvim's startup install (install.missing=true).
+# - GIT_CONFIG_GLOBAL=/dev/null: same rationale as the zsh plugin clones above.
+if command -v nvim >/dev/null 2>&1; then
+  info "Installing Neovim plugins from lazy-lock.json (takes a few minutes)..."
+  if ! run env GIT_CONFIG_GLOBAL=/dev/null nvim --headless "+Lazy! restore" +qa </dev/null; then
+    warn "Neovim plugin install failed — open nvim later and check :Lazy."
+  fi
+fi
+
+# --- 10. Machine-local secrets file -----------------------------------------------
 if [ ! -f "$HOME/.zshrc.local" ]; then
   run cp "$DOTFILES_DIR/.zshrc.local.example" "$HOME/.zshrc.local"
   run chmod 600 "$HOME/.zshrc.local"
@@ -174,11 +186,14 @@ cat <<'EOF'
   2. Set up SSH key for GitHub:
        ssh-keygen -t ed25519 -C "your-email"
        gh auth login                # then: gh ssh-key add ~/.ssh/id_ed25519.pub
-     Until then, clone repos via https (this .gitconfig rewrites https -> ssh).
-  3. Karabiner-Elements: launch once, grant Input Monitoring permission,
+     Note: clones/fetches use plain https; only pushes are rewritten to ssh
+     (pushInsteadOf). For private repos over https, also run: gh auth setup-git
+  3. First interactive nvim launch: Mason downloads LSP servers and treesitter
+     compiles parsers (takes a minute). Run :Copilot auth once for Copilot.
+  4. Karabiner-Elements: launch once, grant Input Monitoring permission,
      then enable the rules under Complex Modifications.
-  4. Raycast: launch and set the hotkey (its settings are not in this repo).
-  5. Put your secrets (OPENAI_API_KEY etc.) into ~/.zshrc.local.
+  5. Raycast: launch and set the hotkey (its settings are not in this repo).
+  6. Put your secrets (OPENAI_API_KEY etc.) into ~/.zshrc.local.
 
   Anything replaced by a symlink was backed up under ~/.dotfiles_backup/.
 EOF
