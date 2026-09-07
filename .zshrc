@@ -117,6 +117,12 @@ alias codex-compress="latest=\$(ls -t ~/.codex/history.jsonl | head -n1) && code
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(~/.local/bin/mise activate zsh)"
 
+# herdr: 未インストールの環境(miseでherdrを入れていないマシンなど)でも
+# エラーにならないよう type で存在確認してから補完を読み込む
+if type herdr > /dev/null 2>&1; then
+  eval "$(herdr completion zsh)"
+fi
+
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator

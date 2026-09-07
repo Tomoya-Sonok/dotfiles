@@ -97,6 +97,7 @@ FILES=(
   .gitconfig
   .config/git/ignore
   .config/mise/config.toml
+  .config/herdr/config.toml
   .config/wezterm
   .config/nvim
   .config/karabiner

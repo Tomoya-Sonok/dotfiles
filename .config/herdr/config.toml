@@ -1,0 +1,38 @@
+# herdr configuration
+# https://herdr.dev/docs/
+#
+# `herdr --default-config` のフルコメント付き出力をベースに、
+# 実際に上書きしている項目だけを有効化している。
+# 全項目を見たい/差分を確認したいときは以下で比較できる:
+#   herdr --default-config | diff - ~/.config/herdr/config.toml
+
+[theme]
+# WezTerm 側 (.config/wezterm/wezterm.lua) は黒背景 + アクティブタブが
+# amber/gold (#ae8b2d) という配色。近い雰囲気の黒基調+暖色アクセントの
+# ビルトインテーマ "vesper" を採用し、アクセント色は WezTerm のタブ色に揃える。
+name = "vesper"
+
+[theme.custom]
+accent = "#ae8b2d"
+
+[keys]
+# WezTerm 自体の leader が Ctrl+q (wezterm.lua の config.leader) で、
+# WezTerm がターミナルエミュレータ側で先に Ctrl+q を捕捉してしまい herdr まで
+# 届かず操作しづらかったため、WezTerm 側と衝突しない Ctrl+h (herdrの頭文字) に変更。
+prefix = "ctrl+h"
+
+[ui]
+# ペイン境界・ナビゲーションのハイライトも WezTerm のアクティブタブ色(amber)に揃える
+accent = "#ae8b2d"
+
+agent_panel_sort = "spaces"
+[ui.sidebar.agents.rows_by_agent]
+# Claude Code のセッション名 (ターミナルタイトルとして流れてくる) を
+# サイドバーの2行目に表示する
+claude = [["state_icon", "workspace", "tab"], ["terminal_title_stripped"], ["agent"]]
+
+[ui.toast]
+# herdr内蔵のポップアップではなくmacOSの通知センター経由でエージェントの
+# 状態変化(完了・入力待ちなど)を通知する
+delivery = "system"
+delay_seconds = 1

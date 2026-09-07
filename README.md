@@ -13,7 +13,8 @@ macOS (Apple Silicon) 用の個人設定ファイル。新しいマシンの環�
 | Git | `.gitconfig` / `.config/git/ignore` |
 | Karabiner-Elements | `.config/karabiner/` |
 | Zed | `.config/zed/settings.json` / `keymap.json` |
-| mise (node / pnpm) | `.config/mise/config.toml` |
+| mise (node / pnpm / herdr) | `.config/mise/config.toml` |
+| herdr (AIエージェント用ターミナルマルチプレクサ) | `.config/herdr/config.toml` |
 | Claude Code | `.claude/settings.json` / `.claude/plugins/blocklist.json` / `.agents/skills/` |
 | Homebrew アプリ一式 | `Brewfile` |
 
