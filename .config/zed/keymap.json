@@ -5,6 +5,8 @@
 //
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
+//
+// Mirrors ~/.config/nvim/lua/config/keymaps.lua (shared with VSCode via vscode-neovim)
 [
   {
     "context": "Workspace",
@@ -13,9 +15,68 @@
     }
   },
   {
-    "context": "Editor",
+    "context": "vim_mode == insert",
     "bindings": {
       "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+  {
+    "context": "(vim_mode == normal || vim_mode == visual) && !menu",
+    "bindings": {
+      "space h": "vim::FirstNonWhitespace",
+      "space l": "vim::EndOfLine"
+    }
+  },
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      "x": ["workspace::SendKeystrokes", "\" _ d l"],
+
+      // LSP
+      "ctrl-k": "editor::FindAllReferences",
+      "space d": "editor::GoToDefinition",
+      "ctrl-j": "editor::GoToDiagnostic",
+      "f t": "terminal_panel::Toggle",
+
+      // Increment/decrement
+      "+": "vim::Increment",
+      "-": "vim::Decrement",
+
+      // Select all
+      "ctrl-a": ["workspace::SendKeystrokes", "g g shift-v shift-g"],
+
+      // Save file and quit
+      "space w": "workspace::Save",
+      "space q": "pane::CloseActiveItem",
+      "space shift-q": "zed::Quit",
+
+      // File explorer
+      "space f": "pane::RevealInProjectPanel",
+      "space t": "workspace::ToggleLeftDock",
+
+      // Tabs
+      "t n": "workspace::NewFile",
+      "tab": "pane::ActivateNextItem",
+      "shift-tab": "pane::ActivatePreviousItem",
+      "t w": "pane::CloseActiveItem",
+      "shift-l": "pane::ActivateNextItem",
+      "shift-h": "pane::ActivatePreviousItem",
+
+      // Split window
+      "s s": "pane::SplitDown",
+      "s v": "pane::SplitRight",
+
+      // Move window
+      "s h": "workspace::ActivatePaneLeft",
+      "s k": "workspace::ActivatePaneUp",
+      "s j": "workspace::ActivatePaneDown",
+      "s l": "workspace::ActivatePaneRight",
+
+      // Resize window
+      "ctrl-shift-h": "vim::ResizePaneLeft",
+      "ctrl-shift-l": "vim::ResizePaneRight",
+      "ctrl-shift-k": "vim::ResizePaneUp",
+      "ctrl-shift-j": "vim::ResizePaneDown"
     }
   }
 ]
