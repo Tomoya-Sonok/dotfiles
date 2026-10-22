@@ -1,4 +1,4 @@
 [tools]
 herdr = "latest"
-node = "latest"
+node = "22"
 "npm:pnpm" = "latest"
